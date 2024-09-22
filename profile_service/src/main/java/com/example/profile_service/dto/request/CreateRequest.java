@@ -3,6 +3,7 @@ package com.example.profile_service.dto.request;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.NoArgsConstructor;
 import lombok.Value;
 
 import java.util.Date;
@@ -10,6 +11,7 @@ import java.util.Date;
 @Value
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor(force = true)
 public class CreateRequest {
 
     @NotNull

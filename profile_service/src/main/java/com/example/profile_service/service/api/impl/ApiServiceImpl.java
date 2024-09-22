@@ -22,25 +22,17 @@ public class ApiServiceImpl implements ApiService {
     private final ResponseMapper responseMapper;
 
     @Override
-    public ProfileResponse getByProfileId(GetByProfileIdRequest request) {
+    public ProfileResponse getByProfileId(GetByProfileIdRequest request) throws ProfileException {
 
-        try {
-            ProfileData result = profileService.getById(request.getProfileId());
-            return responseMapper.toResponse(result);
-        } catch (ProfileException e) {
-            throw e;
-        }
+        ProfileData result = profileService.getById(request.getProfileId());
+        return responseMapper.toResponse(result);
     }
 
     @Override
-    public ProfileResponse getByUserId(GetByUserIdRequest request) {
+    public ProfileResponse getByUserId(GetByUserIdRequest request) throws ProfileException {
 
-        try {
-            ProfileData result = profileService.getByUserId(request.getUserId());
-            return responseMapper.toResponse(result);
-        } catch (ProfileException e) {
-            throw e;
-        }
+        ProfileData result = profileService.getByUserId(request.getUserId());
+        return responseMapper.toResponse(result);
     }
 
     @Override
