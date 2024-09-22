@@ -46,7 +46,7 @@ public class ApiServiceImpl implements ApiService {
                 .lastName(request.getLastName() != null ? request.getLastName() : null)
                 .phone(request.getPhone() != null ? request.getPhone() : null)
                 .age(request.getAge() != null ? request.getAge() : null)
-                .bDay(request.getBDay() != null ? request.getBDay() : null)
+                .birthday(request.getBirthday() != null ? request.getBirthday() : null)
                 .aboutInformation(request.getAboutInformation() != null ? request.getAboutInformation() : null)
                 .sportDisciplineId(request.getSportDisciplineId() != null ? request.getSportDisciplineId() : null)
                 .build();

@@ -1,5 +1,6 @@
 package com.example.profile_service.dto.response;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Builder;
 import lombok.Data;
 
@@ -16,7 +17,8 @@ public class ProfileResponse {
     private String email;
     private String phone;
     private Integer age;
-    private Date bDay;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy")
+    private Date birthday;
     private String aboutInformation;
     private String sportDisciplineId;
 }

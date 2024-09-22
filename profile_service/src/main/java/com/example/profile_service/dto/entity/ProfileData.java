@@ -16,7 +16,7 @@ public class ProfileData {
     private String email;
     private String phone;
     private Integer age;
-    private Date bDay;
+    private Date birthday;
     private String aboutInformation;
     private String sportDisciplineId;
 }

@@ -1,5 +1,6 @@
 package com.example.profile_service.dto.request;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,7 +24,8 @@ public class CreateRequest {
     String lastName;
     String phone;
     Integer age;
-    Date bDay;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy")
+    Date birthday;
     String aboutInformation;
     String sportDisciplineId;
 }
