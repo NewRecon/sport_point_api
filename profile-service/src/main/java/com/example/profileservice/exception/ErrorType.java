@@ -1,6 +1,7 @@
 package com.example.profileservice.exception;
 
 public enum ErrorType {
+
     PROFILE_NOT_FOUND("Profile not found");
 
     private final String message;
