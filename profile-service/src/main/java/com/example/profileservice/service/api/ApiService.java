@@ -1,15 +1,13 @@
 package com.example.profileservice.service.api;
 
-import com.example.profileservice.dto.request.CreateRequest;
-import com.example.profileservice.dto.request.GetByProfileIdRequest;
-import com.example.profileservice.dto.request.GetByUserIdRequest;
-import com.example.profileservice.dto.response.ProfileResponse;
+import com.example.profileservice.dto.request.CreateRq;
+import com.example.profileservice.dto.response.ProfileRs;
 
 public interface ApiService {
 
-    ProfileResponse getByProfileId(GetByProfileIdRequest request);
+    ProfileRs getByProfileId(String id);
 
-    ProfileResponse getByUserId(GetByUserIdRequest request);
+    ProfileRs getByUserId(String id);
 
-    ProfileResponse createProfile(CreateRequest request);
+    ProfileRs createProfile(CreateRq request);
 }

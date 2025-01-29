@@ -1,10 +1,8 @@
 package com.example.profileservice.service.api.impl;
 
 import com.example.profileservice.dto.entity.ProfileData;
-import com.example.profileservice.dto.request.CreateRequest;
-import com.example.profileservice.dto.request.GetByProfileIdRequest;
-import com.example.profileservice.dto.request.GetByUserIdRequest;
-import com.example.profileservice.dto.response.ProfileResponse;
+import com.example.profileservice.dto.request.CreateRq;
+import com.example.profileservice.dto.response.ProfileRs;
 import com.example.profileservice.exception.ProfileException;
 import com.example.profileservice.mapper.ResponseMapper;
 import com.example.profileservice.service.api.ApiService;
@@ -22,21 +20,21 @@ public class ApiServiceImpl implements ApiService {
     private final ResponseMapper responseMapper;
 
     @Override
-    public ProfileResponse getByProfileId(GetByProfileIdRequest request) throws ProfileException {
+    public ProfileRs getByProfileId(String id) throws ProfileException {
 
-        ProfileData result = profileService.getById(request.getProfileId());
+        ProfileData result = profileService.getById(id);
         return responseMapper.toResponse(result);
     }
 
     @Override
-    public ProfileResponse getByUserId(GetByUserIdRequest request) throws ProfileException {
+    public ProfileRs getByUserId(String id) throws ProfileException {
 
-        ProfileData result = profileService.getByUserId(request.getUserId());
+        ProfileData result = profileService.getByUserId(id);
         return responseMapper.toResponse(result);
     }
 
     @Override
-    public ProfileResponse createProfile(CreateRequest request) {
+    public ProfileRs createProfile(CreateRq request) {
 
         ProfileData profileData = ProfileData.builder()
                 .profileId(UUID.randomUUID().toString())
