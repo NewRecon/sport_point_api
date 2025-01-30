@@ -1,9 +1,11 @@
 package com.example.profileservice.service.api.impl;
 
-import com.example.profileservice.dto.entity.ProfileData;
+import com.example.profileservice.dto.entity.ProfileDto;
 import com.example.profileservice.dto.request.CreateRq;
+import com.example.profileservice.dto.request.UpdateRq;
 import com.example.profileservice.dto.response.ProfileRs;
 import com.example.profileservice.exception.ProfileException;
+import com.example.profileservice.mapper.RequestMapper;
 import com.example.profileservice.mapper.ResponseMapper;
 import com.example.profileservice.service.api.ApiService;
 import com.example.profileservice.service.entity.ProfileService;
@@ -18,38 +20,29 @@ public class ApiServiceImpl implements ApiService {
 
     private final ProfileService profileService;
     private final ResponseMapper responseMapper;
+    private final RequestMapper requestMapper;
 
     @Override
     public ProfileRs getByProfileId(String id) throws ProfileException {
-
-        ProfileData result = profileService.getById(id);
-        return responseMapper.toResponse(result);
+        return responseMapper.toResponse(profileService.getById(id));
     }
 
     @Override
-    public ProfileRs getByUserId(String id) throws ProfileException {
+    public ProfileRs create(CreateRq request) {
 
-        ProfileData result = profileService.getByUserId(id);
-        return responseMapper.toResponse(result);
+        ProfileDto profileDto = requestMapper.toDto(request);
+        profileDto.toBuilder().profileId(UUID.randomUUID().toString());
+
+        return responseMapper.toResponse(profileService.save(profileDto));
     }
 
     @Override
-    public ProfileRs createProfile(CreateRq request) {
+    public ProfileRs update(UpdateRq request) {
+        return responseMapper.toResponse(profileService.save(requestMapper.toDto(request)));
+    }
 
-        ProfileData profileData = ProfileData.builder()
-                .profileId(UUID.randomUUID().toString())
-                .userId(request.userId())
-                .firstName(request.firstName())
-                .email(request.email())
-                .lastName(request.lastName())
-                .phone(request.phone())
-                .age(request.age())
-                .birthday(request.birthday())
-                .aboutInformation(request.aboutInformation())
-                .sportDisciplineId(request.sportDisciplineId())
-                .build();
-
-        ProfileData profile = profileService.save(profileData);
-        return responseMapper.toResponse(profile);
+    @Override
+    public void delete(String id) {
+        profileService.delete(id);
     }
 }

@@ -1,16 +1,14 @@
 package com.example.profileservice.service.entity.impl;
 
-import com.example.profileservice.dto.entity.ProfileData;
+import com.example.profileservice.dto.entity.ProfileDto;
 import com.example.profileservice.exception.ErrorType;
 import com.example.profileservice.exception.ProfileException;
-import com.example.profileservice.mapper.ProfileMapper;
-import com.example.profileservice.model.Profile;
+import com.example.profileservice.mapper.EntityMapper;
 import com.example.profileservice.repositorie.ProfileRepository;
 import com.example.profileservice.service.entity.ProfileService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -18,37 +16,21 @@ import java.util.UUID;
 public class ProfileServiceImpl implements ProfileService {
 
     private final ProfileRepository profileRepository;
-    private final ProfileMapper profileMapper;
+    private final EntityMapper entityMapper;
 
     @Override
-    public ProfileData save(ProfileData profileData) {
-
-        Profile profile = profileMapper.toModel(profileData);
-
-        return profileMapper.toData(profileRepository.save(profile));
+    public ProfileDto getById(String profileId) {
+        return entityMapper.toDto(profileRepository.findById(UUID.fromString(profileId))
+                .orElseThrow(() -> new ProfileException(ErrorType.PROFILE_NOT_FOUND)));
     }
 
     @Override
-    public ProfileData getById(String profileId) {
-
-        Optional<Profile> profile = profileRepository.getByProfileId(UUID.fromString(profileId));
-
-        if (profile.isPresent()) {
-            return profileMapper.toData(profile.get());
-        } else {
-            throw new ProfileException(ErrorType.PROFILE_NOT_FOUND);
-        }
+    public ProfileDto save(ProfileDto profileDto) {
+        return entityMapper.toDto(entityMapper.toEntity(profileDto));
     }
 
     @Override
-    public ProfileData getByUserId(String userId) {
-
-        Optional<Profile> profile = profileRepository.getByUserId(userId);
-
-        if (profile.isPresent()) {
-            return profileMapper.toData(profile.get());
-        } else {
-            throw new ProfileException(ErrorType.PROFILE_NOT_FOUND);
-        }
+    public void delete(String profileId) {
+        profileRepository.deleteById(UUID.fromString(profileId));
     }
 }

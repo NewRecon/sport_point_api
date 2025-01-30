@@ -1,12 +1,12 @@
 package com.example.profileservice.service.entity;
 
-import com.example.profileservice.dto.entity.ProfileData;
+import com.example.profileservice.dto.entity.ProfileDto;
 
 public interface ProfileService {
 
-    ProfileData save(ProfileData profileData);
+    ProfileDto getById(String profileId);
 
-    ProfileData getById(String profileId);
+    ProfileDto save(ProfileDto profileDto);
 
-    ProfileData getByUserId(String userId);
+    void delete(String profileId);
 }

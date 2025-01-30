@@ -6,12 +6,10 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-@Builder
-public class ProfileData {
+@Builder(toBuilder = true)
+public class ProfileDto {
 
     private String profileId;
-
-    private String userId;
 
     private String firstName;
 
@@ -19,13 +17,7 @@ public class ProfileData {
 
     private String email;
 
-    private String phone;
-
-    private Integer age;
-
     private Date birthday;
 
     private String aboutInformation;
-
-    private String sportDisciplineId;
 }

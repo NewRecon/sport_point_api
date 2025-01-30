@@ -21,6 +21,6 @@ public class ApiControllerTest extends ProfileServiceApplication {
     }
 
     private CreateRq getCreateRq() {
-        return CreateRq.builder();
+        return CreateRq.builder().build();
     }
 }

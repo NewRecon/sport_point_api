@@ -2,19 +2,18 @@ package com.example.profileservice.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.NotNull;
-import lombok.Builder;
 
 import java.util.Date;
 
-@Builder(toBuilder = true)
-public record CreateRq(
+public record UpdateRq(
 
         @NotNull
+        String profileId,
+
         String firstName,
 
         String lastName,
 
-        @NotNull
         String email,
 
         @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy")
@@ -22,4 +21,5 @@ public record CreateRq(
 
         String aboutInformation
 ) {
+
 }

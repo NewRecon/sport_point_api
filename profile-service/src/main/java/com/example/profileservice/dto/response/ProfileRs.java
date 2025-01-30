@@ -12,22 +12,14 @@ public class ProfileRs {
 
     private String profileId;
 
-    private String userId;
-
     private String firstName;
 
     private String lastName;
 
     private String email;
 
-    private String phone;
-
-    private Integer age;
-
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd.MM.yyyy")
     private Date birthday;
 
     private String aboutInformation;
-
-    private String sportDisciplineId;
 }
