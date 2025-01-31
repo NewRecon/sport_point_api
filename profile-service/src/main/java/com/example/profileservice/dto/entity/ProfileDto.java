@@ -7,7 +7,7 @@ import java.util.Date;
 
 @Data
 @Builder(toBuilder = true)
-public class ProfileDto {
+public class  ProfileDto {
 
     private String profileId;
 

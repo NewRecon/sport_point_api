@@ -31,7 +31,7 @@ public class ApiServiceImpl implements ApiService {
     public ProfileRs create(CreateRq request) {
 
         ProfileDto profileDto = requestMapper.toDto(request);
-        profileDto.toBuilder().profileId(UUID.randomUUID().toString());
+        profileDto = profileDto.toBuilder().profileId(UUID.randomUUID().toString()).build();
 
         return responseMapper.toResponse(profileService.save(profileDto));
     }
